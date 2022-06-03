@@ -2,6 +2,8 @@ const pesquisaItem = (item = 'computador') => `https://api.mercadolibre.com/site
 
 const fetchProducts = async (items) => {
   const url = pesquisaItem(items);
+  const resultado = await fetch(url);
+  const data = await resultado.json();
 
   /*
 Implemente a função fetchProducts para retornar a listagem de produtos;
