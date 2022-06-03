@@ -39,3 +39,7 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 };
 
 window.onload = () => { };
+
+module.exports = {
+  createProductItemElement,
+};

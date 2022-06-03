@@ -27,11 +27,7 @@ describe('1 - Teste a função fetchProducts', () => {
 
   //Teste se, ao chamar a função fetchProducts sem argumento, retorna um erro com a mensagem: 'You must provide an url'.
   it('Teste se, ao chamar a função fetchProducts sem argumento, retorna um erro com a mensagem: \'You must provide an url\'', async () => {
-    try {
-      const resultado = await fetchProducts();
-      expect(true).toBe(false);
-    } catch (error) {
-      expect(error).toEqual(new Error('You must provide an url'));
-    }
+    const resultado = await fetchProducts();
+    expect(resultado).toEqual(new Error('You must provide an url'));
   })
 });
