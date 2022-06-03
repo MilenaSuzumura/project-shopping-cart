@@ -7,7 +7,7 @@ const fetchProducts = async (produto) => {
     const url = pesquisaProduto(produto);
     const resultado = await fetch(url);
     const data = await resultado.json();
-    data.results.forEach(produto => {
+    data.results.forEach((produto) => {
       const { id, title, thumbnail } = produto;
       createProductItemElement({ id, title, thumbnail });
     });
