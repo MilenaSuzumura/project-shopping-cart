@@ -9,14 +9,14 @@ describe('2 - Teste a função fetchItem', () => {
   });
   
   // Execute a função fetchItem com o argumento do item "MLB1615760527" e teste se fetch foi chamada;
-  it('Testa se fetch foi chamado na função fetchItem com o argumento do item "MLB1615760527"', async () => {
-    const resultado = await fetchItem('MLB1615760527');
+  it('Testa se fetch foi chamado na função fetchItem com o argumento do item "MLB1615760527"', () => {
+    fetchItem('MLB1615760527');
     expect(fetch).toHaveBeenCalled();
   });
 
   // Teste se, ao chamar a função fetchItem com o argumento do item "MLB1615760527", a função fetch utiliza o endpoint "https://api.mercadolibre.com/items/MLB1615760527";
-  it('Teste se, ao chamar a função fetchItem com o argumento do item "MLB1615760527", a função fetch utiliza o endpoint "https://api.mercadolibre.com/items/MLB1615760527"', async () => {
-    const resultado = await fetchItem('MLB1615760527');
+  it('Teste se, ao chamar a função fetchItem com o argumento do item "MLB1615760527", a função fetch utiliza o endpoint "https://api.mercadolibre.com/items/MLB1615760527"', () => {
+    fetchItem('MLB1615760527');
     expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1615760527');
   });
 

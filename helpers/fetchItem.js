@@ -1,10 +1,7 @@
-const pesquisaProduto = (item) => `https://api.mercadolibre.com/items/${item}`;
-
 const fetchItem = async (produto) => {
-  const url = pesquisaProduto(produto);
+  const url = `https://api.mercadolibre.com/items/${produto}`;
   const resultado = await fetch(url);
   const data = await resultado.json();
-  createCartItemElement(data.site_id, data.title, data.price);
   return data;
 };
 
