@@ -1,5 +1,3 @@
-const { createProductItemElement } = require('../script');
-
 const pesquisaProduto = (item) => `https://api.mercadolibre.com/sites/MLB/search?q=${item}`;
 
 const fetchProducts = async (produto) => {

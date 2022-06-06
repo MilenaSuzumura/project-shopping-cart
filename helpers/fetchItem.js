@@ -1,5 +1,3 @@
-const { createCartItemElement } = require('../script');
-
 const pesquisaProduto = (item) => `https://api.mercadolibre.com/items/${item}`;
 
 const fetchItem = async (produto) => {
