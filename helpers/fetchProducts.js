@@ -8,9 +8,7 @@ const fetchProducts = async (produto) => {
   const data = await resultado.json();
   data.results.forEach((produtos) => {
     const { id, title, thumbnail } = produtos;
-    const item = createProductItemElement(id, title, thumbnail);
-    const section = document.querySelector('.items');
-    section.appendChild(item);
+    createProductItemElement(id, title, thumbnail);
   });
   return data;
 };
