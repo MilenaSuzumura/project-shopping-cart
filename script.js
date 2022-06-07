@@ -38,6 +38,16 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
+const cardAdicionar = async (idProduto) => {
+  const select = document.querySelector('.cart__items');
+  if (idProduto !== null) {
+    const produto = await fetchItem(idProduto);
+    const { id: sku, title: name, price: salePrice } = produto;
+    const finalProduto = createCartItemElement({ sku, name, salePrice });
+    select.appendChild(finalProduto);
+  }
+};
+
 // Referencia: https://stackoverflow.com/questions/50643302/addeventlistener-on-a-queryselectorall-with-classlist
 const botaoClick = () => {
   const botao = document.querySelectorAll('.item__add');
@@ -47,7 +57,7 @@ const botaoClick = () => {
       cardAdicionar(`${skus[i].textContent}`);
     });
   }
-}
+};
 
 // Referencia: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_Objects
 const produtoAppend = async () => {
@@ -63,17 +73,6 @@ const produtoAppend = async () => {
     botaoClick();
   }
 };
-
-const cardAdicionar = async (idProduto) => {
-  const select = document.querySelector('.cart__items');
-  //console.log(idProduto);
-  if(idProduto !== null) {
-    const produto = await fetchItem(idProduto);
-    const { id: sku, title: name, price: salePrice } = produto;
-    const finalProduto = createCartItemElement({ sku, name, salePrice });
-    select.appendChild(finalProduto);
-  }
-}
 
 window.onload = () => {
   produtoAppend();
