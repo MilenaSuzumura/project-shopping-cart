@@ -80,8 +80,8 @@ const esvaziaCarrinho = () => {
   todosProdutosCarrinho.forEach((produto) => localCarrinho.removeChild(produto));
 };
 
-const botao = document.querySelector('.empty-cart');
-botao.addEventListener('click', esvaziaCarrinho);
+const botaoEsvazia = document.querySelector('.empty-cart');
+botaoEsvazia.addEventListener('click', esvaziaCarrinho);
 
 window.onload = () => {
   produtoAppend();
