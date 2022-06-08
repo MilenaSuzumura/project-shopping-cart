@@ -1,4 +1,6 @@
 const localCarrinho = document.querySelector('.cart__items');
+const localProdutos = document.querySelector('.items');
+let carregamento = false;
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -62,7 +64,6 @@ const botaoClick = () => {
 
 // Referencia: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_Objects
 const produtoAppend = async () => {
-  const localProdutos = document.querySelector('.items');
   const produtos = await fetchProducts('computador');
   const { results } = produtos;
   results.forEach((produto) => {
@@ -70,6 +71,7 @@ const produtoAppend = async () => {
     const produtosCartao = createProductItemElement({ sku, name, image });
     localProdutos.appendChild(produtosCartao);
   });
+  carregamento = true;
   if (results) {
     botaoClick();
   }
@@ -82,6 +84,20 @@ const esvaziaCarrinho = () => {
 
 const botaoEsvazia = document.querySelector('.empty-cart');
 botaoEsvazia.addEventListener('click', esvaziaCarrinho);
+
+const paginaCarregando = () => {
+  const mensagemCarregar = document.createElement('p');
+  mensagemCarregar.className = 'loading';
+  localProdutos.appendChild(mensagemCarregar);
+  setTimeout(() => {
+    mensagemCarregar.innerHTML = 'carregando...';
+    localProdutos.removeChild(mensagemCarregar);
+  }, carregamento);
+};
+
+if (carregamento === false) {
+  paginaCarregando();
+}
 
 window.onload = () => {
   produtoAppend();
