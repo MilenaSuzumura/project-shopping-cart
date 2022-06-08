@@ -1,3 +1,5 @@
+const localCarrinho = document.querySelector('.cart__items');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -27,8 +29,7 @@ const createProductItemElement = ({ sku, name, image }) => {
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
-  const select = document.querySelector('.cart__items');
-  select.removeChild(event.path[0]);
+  localCarrinho.removeChild(event.path[0]);
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -40,12 +41,11 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 };
 
 const cardAdicionar = async (idProduto) => {
-  const select = document.querySelector('.cart__items');
   if (idProduto !== null) {
     const produto = await fetchItem(idProduto);
     const { id: sku, title: name, price: salePrice } = produto;
     const finalProduto = createCartItemElement({ sku, name, salePrice });
-    select.appendChild(finalProduto);
+    localCarrinho.appendChild(finalProduto);
   }
 };
 
@@ -62,18 +62,26 @@ const botaoClick = () => {
 
 // Referencia: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_Objects
 const produtoAppend = async () => {
-  const select = document.querySelector('.items');
+  const localProdutos = document.querySelector('.items');
   const produtos = await fetchProducts('computador');
   const { results } = produtos;
   results.forEach((produto) => {
     const { id: sku, title: name, thumbnail: image } = produto;
     const produtosCartao = createProductItemElement({ sku, name, image });
-    select.appendChild(produtosCartao);
+    localProdutos.appendChild(produtosCartao);
   });
   if (results) {
     botaoClick();
   }
 };
+
+const esvaziaCarrinho = () => {
+  const todosProdutosCarrinho = document.querySelectorAll('.cart__item');
+  todosProdutosCarrinho.forEach((produto) => localCarrinho.removeChild(produto));
+};
+
+const botao = document.querySelector('.empty-cart');
+botao.addEventListener('click', esvaziaCarrinho);
 
 window.onload = () => {
   produtoAppend();
